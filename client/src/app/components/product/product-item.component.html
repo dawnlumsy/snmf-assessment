@@ -1,0 +1,15 @@
+<div fxLayout = "row wrap">
+    <mat-card *ngFor="let prod of products" fxLayoutGap="1%" class="card">
+        <mat-card-header>
+            <img class="imagecss" mat-card-image src="https://sgp1.digitaloceanspaces.com/dawn123/boutique/{{prod_type}}/{{prod.img_path}}">
+        </mat-card-header>
+        <mat-card-content>
+            {{prod.prod_name}}, ${{prod.selling_price}}
+        </mat-card-content>
+        <div>
+            <mat-card-actions>
+                <button mat-button (click)=productdetail(prod.prod_type_desc,prod.prod_detail_id)>View More</button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+</div>

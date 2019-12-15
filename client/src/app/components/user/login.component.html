@@ -1,0 +1,29 @@
+<h2 fxLayoutAlign="center">Sign In to your Account</h2>
+
+<mat-grid-list cols="2">
+    <mat-grid-tile>
+        <form #form="ngForm" (ngSubmit)="performLogin(form)" fxLayout=column>
+            <p *ngIf="failure" class="invalidlogin">Invalid Login/ Invalid Password</p>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Enter username" name="username" required ngModel>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="password" matInput placeholder="Password" name="password" required ngModel>
+            </mat-form-field>
+
+            <!-- <mat-form-field>
+                <input type="text" matInput placeholder="Google OTP" name="otp" required ngModel>
+            </mat-form-field> -->
+            <!-- <div fxLayoutAlign="row"> -->
+                <button type="submit" mat-raised-button [disabled]="form.invalid">Login</button>
+                <!-- <a [routerLink]="'create-account'">Create Account</a> -->
+            <!-- </div> -->
+        </form>
+    </mat-grid-tile>
+    <mat-grid-tile>
+            Login in with FaceBook<br>
+            Login in with Google Account<br>
+    </mat-grid-tile>
+</mat-grid-list>
+
+

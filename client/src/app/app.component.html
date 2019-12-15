@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1vw">
+      <img src="../assets/fashion_image.jpg" alt="fashion_image" height="42" width="42">
+      <h1 class=shopname>Boutique</h1>
+    </div>
+    <div class="navigation">
+      <a *ngIf="!isLoginIn()" mat-button [routerLink]="'login'"> Login </a>
+      <!-- <a *ngIf="isLoginIn()" mat-button [routerLink]="'logout'"> Logout </a> -->
+      <!-- <a *ngIf="isLoginIn()" mat-button (click)="onLogout()" [routerLink]="'logout'"> Logout </a> -->
+      <a *ngIf="isLoginIn()" mat-button [routerLink]="'logout'"> Logout </a>
+      |<a mat-button [routerLink]="'create-account'"> Create Account </a>|
+      <a mat-button [routerLink]="'account'"> Account </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  News Flash
+  More Pictures
+</div>
+
+<mat-toolbar>
+  <mat-toolbar-row fxLayout="row">
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div> 
+      <a mat-button [routerLink]="'/Home'"> Home </a>
+      <a mat-button [routerLink]="'/product'"> Product </a>
+      <a mat-button [routerLink]="'/contact-us'"> Contact Us </a>
+      <a mat-button [routerLink]="'/cart'"> Cart </a>
+      <!-- <input type="text" name="search" placeholder="Search this site"> -->
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

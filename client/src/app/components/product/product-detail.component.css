@@ -1,0 +1,29 @@
+.imagecss {
+    max-width: 90%;
+}
+
+.flexbox-container {
+    margin: 1em;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.sidebar {
+    flex:1;
+}
+.main {
+    flex:2.5;
+}
+
+.detail{
+    font-size: small;
+}
+
+.desc {
+    text-align: justify;
+}
+
+.button {
+    margin: 1em;
+}
+

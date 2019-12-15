@@ -1,0 +1,98 @@
+<h2 fxLayoutAlign="center">Create Account</h2>
+
+
+<form [formGroup]="formGroup">
+    <mat-horizontal-stepper formArrayName="formArray" linear  #stepper>
+        <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
+            <ng-template matStepLabel>Fill out your details</ng-template>
+            <div fxLayout="column">
+                <p *ngIf="failure" class="invaliduser">Username already selected</p>
+                <mat-form-field>
+                    <input matInput placeholder="Choose a unique username" formControlName="username" required>
+                    <button mat-icon-button matSuffix (click)="getUsernameValid()" search>
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="email" matInput placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+                <mat-form-field hintLabel="Min 3 characters">
+                    <input type="password" matInput placeholder="Password" formControlName="passwordCtrl" [type]="hide1 ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                        <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirmCtrl" [type]="hide2 ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Contact No" formControlName="tel" required>
+                </mat-form-field>
+                <mat-label>Gender</mat-label>
+                <mat-radio-group aria-label="Gender" formControlName="gender" required fxLayout="column">
+                        <mat-radio-button value="F">Female</mat-radio-button>
+                        <mat-radio-button value="M">Male</mat-radio-button>
+                    </mat-radio-group>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dob" [max]="yearDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker touchUi="true"></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button matStepperNext type="button" disable=!(failure)>Next</button>
+            </div>
+        </mat-step>
+        <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+            <ng-template matStepLabel>Fill out your billing address</ng-template>
+            <div fxLayout="column">
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="address1" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Address Line 2 [Optional]" formControlName="address2">
+                </mat-form-field>                
+                <mat-form-field>
+                    <input matInput placeholder="City" formControlName="city" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="State/ Territory" formControlName="state" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Postcode" formControlName="postcode" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Country" formControlName="country" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button matStepperPrevious type="button">Back</button>
+                <button mat-button matStepperNext type="button">Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            Click Submit to create account
+            <div>
+                <button mat-button matStepperPrevious type="button">Back</button>
+                <button mat-button type="button" (click)="stepper.reset()">Reset</button>
+                <button mat-button type="button" disable=!(formGroup.isvalid) (click)="submit()">Submit</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</form>
+
+<!-- <p>
+    Form Value: {{ formGroup.value | json }}
+</p>
+
+
+<p>failure Value: {{this.failure}} </p> -->
+
+
+<button routerLink="/">
+    Back
+</button>

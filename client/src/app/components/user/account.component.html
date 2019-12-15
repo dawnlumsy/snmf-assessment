@@ -1,0 +1,33 @@
+Welcome {{username}}
+
+<mat-tab-group class=body>
+    <mat-tab label="User Details">
+        <p>Username: {{username}}</p>
+        <!-- <p>Email: {{custInfo.email}}</p> -->
+        <form [formGroup]="firstFormGroup">
+                Tel:
+                <mat-form-field>
+                    <input matInput type="text" formControlName="tel" required>
+                </mat-form-field>
+            
+            <!-- <div fxLayout=row>
+                DOB:
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dob"
+                        [max]="yearDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker touchUi="true"></mat-datepicker>
+                </mat-form-field>
+            </div> -->
+            <button mat-stroked type="submit" (click)=updateDetail()>Update details</button>
+        </form>
+        <!-- <p>Gender: {{custInfo.gender}}</p>
+        <p>DOB:{{custInfo.dob}}</p> -->
+
+
+        <!-- <p>form value: {{firstFormGroup.value | json}}</p> -->
+    </mat-tab>
+    <mat-tab label="Address Details">
+        Future enhancement to Display the Address Details
+    </mat-tab>
+</mat-tab-group>

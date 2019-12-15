@@ -1,0 +1,134 @@
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Order Details</ng-template>
+      <div *ngIf="lineItems.length == 0">
+        <h2>Your cart is empty</h2>
+      </div>
+
+      <div *ngIf="lineItems.length != 0">
+        <h2>Your cart</h2>
+
+        <!-- <form #form='ngForm' (ngSubmit)="processOrder(form)"> -->
+        <!-- Order Id: # XXX  -->
+        <table border='1em'>
+          <tr>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Qty</th>
+            <th>Total Price</th>
+            <th></th>
+          </tr>
+
+          <tr *ngFor="let li of lineItems">
+            <td>img</td>
+            <td>
+          <tr>{{ li.description }}</tr>
+          <tr>{{ li.color }} - {{ li.size }}</tr>
+          </td>
+          <td>$ {{ li.unitprice }}</td>
+          <td>{{ li.quantity }}</td>
+          <td>$ {{ li.price}}</td>
+          <td><button type="button" (click)="onDelete(li.prod_detail_id)">Remove</button></td>
+          </tr>
+          <tr>
+            <td class='innerborder' colspan="4">Sum of all the items:</td>
+            <td>$ {{ totalAmt() }}</td>
+          </tr>
+        </table>
+
+        <!-- <button type="submit">CheckOut</button> -->
+        <!-- </form> -->
+
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill in your Shipping address</ng-template>
+      <div fxLayout="column">
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="address1" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address Line 2 [Optional]" formControlName="address2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="City" formControlName="city" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="State/ Territory" formControlName="state" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Postcode" formControlName="postcode" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Country" formControlName="country" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Fill in your Payment Detail</ng-template>
+      <div fxLayout="column">
+        <mat-form-field>
+          <input matInput placeholder="card#" formControlName="cardId" required>
+        </mat-form-field>
+        <button mat-button id="submit">
+          <div class="spinner hidden" id="spinner"></div>
+          <span id="button-text">Pay</span><span id="order-amount"></span>
+        </button>
+
+        <!-- <div class="sr-root">
+              <div class="sr-main">
+                <mat-form-field id="payment-form" class="sr-payment-form">
+                  <div class="sr-combo-inputs-row">
+                    <div class="sr-input sr-card-element" id="card-element"></div>
+                  </div>
+                  <div class="sr-field-error" id="card-errors" role="alert"></div>
+                  <button mat-button id="submit">
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">Pay</span><span id="order-amount"></span>
+                  </button>
+                </mat-form-field>
+                <div class="sr-result hidden">
+                  <p>Payment completed<br /></p>
+                  <pre>
+                    <code></code>
+                  </pre>
+                </div>
+              </div>
+            </div>  -->
+
+
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button type="button" (click)="processOrder()">Submit</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<button routerLink="/">
+  Back
+</button>
